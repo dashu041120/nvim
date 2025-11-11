@@ -2,7 +2,16 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      -- 全局禁用 LSP 进度通知
+      local original_handler = vim.lsp.handlers["$/progress"]
+      vim.lsp.handlers["$/progress"] = function() end
+    end,
     opts = {
+      -- 禁用所有 LSP 进度通知
+      diagnostics = {
+        virtual_text = true,
+      },
       servers = {
         -- Rust
         rust_analyzer = {
@@ -14,7 +23,15 @@ return {
               checkOnSave = {
                 command = "clippy",
               },
+              -- 禁用加载进度通知
+              procMacro = {
+                enable = true,
+              },
             },
+          },
+          -- 禁用 LSP 进度通知
+          handlers = {
+            ["$/progress"] = function() end,
           },
         },
         

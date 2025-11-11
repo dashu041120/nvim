@@ -4,7 +4,9 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
+      -- nvim-dap-ui requires nvim-nio (from nvim-neotest) to be installed
       "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-telescope/telescope-dap.nvim",
     },

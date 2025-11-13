@@ -32,10 +32,10 @@ return {
     end,
   },
 
-  -- auto-indent - 自动缩进
+  -- auto-indent - 自动缩进（禁用，使用自定义缩进配置）
   {
     "vidocqh/auto-indent.nvim",
-    opts = {},
+    enabled = false,
   },
 
   -- bim.nvim - 缓冲区改进

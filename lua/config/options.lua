@@ -1,6 +1,10 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+
+-- 禁用 LazyVim 的自动格式化
+vim.g.autoformat = false
+
 local opt = vim.opt
 
 vim.scriptencoding = 'utf-8'
@@ -17,11 +21,12 @@ vim.opt.pumblend = 5
 -- opt.scrolloff = 999          -- 保持光标在屏幕中央
 -- opt.sidescrolloff = 999      -- 保持光标在水平方向中央
 
--- 缩进
-opt.tabstop = 4              -- Tab 宽度为 4 个空格
-opt.shiftwidth = 4           -- 自动缩进宽度
-opt.expandtab = false         -- 不使用空格替代 Tab
+-- 缩进（使用 Tab 字符，宽度为 4）
+opt.tabstop = 4              -- Tab 显示宽度为 4 个空格
+opt.shiftwidth = 4           -- 自动缩进宽度为 4 个空格
+opt.expandtab = false        -- 使用 Tab 字符（不转换为空格）
 opt.autoindent = true        -- 新行自动缩进
+opt.smartindent = true       -- 智能缩进（根据语法）
 
 -- 搜索
 opt.hlsearch = true          -- 高亮搜索结果

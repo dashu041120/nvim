@@ -47,8 +47,7 @@ return {
             "--clang-tidy",
             "--header-insertion=iwyu",
             "--completion-style=detailed",
-            "--function-arg-placeholders",
-            "--fallback-style=llvm",
+            "--function-arg-placeholders=true",  -- 修复：添加 =true
           },
           init_options = {
             usePlaceholders = true,

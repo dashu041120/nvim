@@ -1,25 +1,40 @@
 -- UI 增强插件
 return {
-  -- indent-blankline - 红色缩进参考线
+  -- indent-blankline - 彩虹色缩进参考线
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    opts = {
-      indent = {
-        char = "│",
-        highlight = { "IndentRed" },
-      },
-      scope = {
-        enabled = true,
-        show_start = true,
-        show_end = false,
-        highlight = { "IndentRed" },
-      },
-    },
-    config = function(_, opts)
-      -- 定义红色高亮
-      vim.api.nvim_set_hl(0, "IndentRed", { fg = "#E06C75" })
-      require("ibl").setup(opts)
+    opts = function()
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+
+      local hooks = require("ibl.hooks")
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      vim.g.rainbow_delimiters = { highlight = highlight }
+      require("ibl").setup { scope = { highlight = highlight } }
+
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+      return {
+        indent = { char = "▎" },
+        scope = { highlight = highlight },
+      }
     end,
   },
 

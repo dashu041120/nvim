@@ -41,6 +41,9 @@ opt.clipboard = 'unnamedplus' -- 与系统剪贴板共享
 opt.splitright = true        -- 水平分割窗口时，新窗口在右侧
 -- opt.splitbelow = true        -- 垂直分割窗口时，新窗口在下方
 opt.scrolloff = 8            -- 光标上下保留 8 行的边距
+opt.synmaxcol = 240          -- 避免对超长行执行语法高亮
+opt.updatetime = 200         -- 更快刷新 CursorHold/诊断，减小输入延迟
+-- opt.lazyredraw = true        -- 大幅滚动时推迟重绘，缓解卡顿
 
 -- 下划线
 -- "\e[4:3m" 是用于下划线文本的 ANSI 转义序列，宽度为1像素

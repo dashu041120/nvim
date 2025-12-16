@@ -18,6 +18,17 @@ opt.relativenumber = true      -- 显示相对行号
 opt.cursorline = true        -- 高亮当前行
 opt.pumheight = 10           -- 补全菜单高度
 vim.opt.pumblend = 5
+-- opt.signcolumn = "no"        -- 完全禁用 signcolumn 以避免断言失败
+opt.list = true              -- 显示空白字符，以便配合彩虹缩进
+-- TODO : 进一步调整 listchars
+opt.listchars = {
+	tab = "▎ ",
+	lead = "·",
+	trail = "·",
+	extends = "…",
+	precedes = "…",
+	nbsp = "␣",
+}
 -- opt.scrolloff = 999          -- 保持光标在屏幕中央
 -- opt.sidescrolloff = 999      -- 保持光标在水平方向中央
 

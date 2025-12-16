@@ -11,6 +11,9 @@ return {
       -- 禁用所有 LSP 进度通知
       diagnostics = {
         virtual_text = true,
+        signs = false,
+        underline = true,
+        update_in_insert = false,
       },
       servers = {
         -- Rust

@@ -30,11 +30,6 @@ return {
       require("ibl").setup { scope = { highlight = highlight } }
 
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-
-      return {
-        indent = { char = "▎" },
-        scope = { highlight = highlight },
-      }
     end,
   },
 
@@ -131,12 +126,43 @@ return {
     opts = {},
   },
 
-  -- nvim-lightbulb - 代码操作提示灯泡
+  -- nvim-lightbulb - LSP 代码提示灯泡
   {
     "kosayoda/nvim-lightbulb",
     opts = {
       autocmd = { enabled = true },
-      sign = { enabled = true, text = "💡" },
+      sign = { enabled = true, text = "💡", hl = "LspDiagnosticsSignHint" },
+      virtual_text = { enabled = true, text = "💡" },
     },
+  },
+
+  -- rainbow-delimiters - 给成对括号、花括号等添加不同的颜色
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      -- 为 rainbow-delimiters 定义专用的高亮组（必须使用 RainbowDelimiter 前缀）
+      vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
+
+      -- 配置 rainbow-delimiters
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = "rainbow-delimiters.strategy.global",
+          vim = "rainbow-delimiters.strategy.local",
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          c = "rainbow-delimiters",
+          cpp = "rainbow-delimiters",
+        },
+      }
+    end,
   },
 }

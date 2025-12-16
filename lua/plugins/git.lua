@@ -1,18 +1,9 @@
 -- Git 相关插件
 return {
-  -- Gitsigns - Git 状态指示器（LazyVim 默认已包含，这里是自定义配置）
+  -- Gitsigns - Git 状态指示器
   {
     "lewis6991/gitsigns.nvim",
-    opts = {
-      signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
-      },
-    },
+    enabled = false,
   },
 
   -- Diffview - Git diff 查看器

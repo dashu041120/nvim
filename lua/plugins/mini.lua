@@ -1,13 +1,18 @@
--- Mini.nvim 模块替换配置
+-- === mini.nvim: 轻量级插件集合 ===
+-- 模块化配置各个 mini 子模块
+
 return {
   {
     "nvim-mini/mini.nvim",
     version = false,
     config = function()
+      -- ==================== 编辑操作 ====================
+      -- mini.pairs - 自动括号配对
       require("mini.pairs").setup({
         modes = { insert = true, command = false, terminal = false },
       })
 
+      -- mini.comment - 快速注释
       require("mini.comment").setup({
         mappings = {
           comment = "gc",
@@ -17,16 +22,51 @@ return {
         },
       })
 
+      -- ==================== UI 增强 ====================
+      -- mini.indentscope - 缩进引导线与作用域指示
       require("mini.indentscope").setup({
         symbol = "│",
         options = { try_as_border = true },
         draw = { delay = 50 },
       })
 
+      -- mini.tabline - 标签栏
       require("mini.tabline").setup({
         show_icons = true,
       })
 
+      -- ==================== 文本对象扩展 ====================
+      -- mini.ai - 创建和扩展 a/i 文本对象
+      require("mini.ai").setup({
+        custom_textobjects = nil,
+        mappings = {
+          around = "a",
+          inside = "i",
+          around_next = "an",
+          inside_next = "in",
+          around_last = "al",
+          inside_last = "il",
+          goto_left = "g[",
+          goto_right = "g]",
+        },
+        n_lines = 50,
+        search_method = "cover_or_next",
+        silent = false,
+      })
+
+      -- ==================== Git 集成 ====================
+      -- mini.git - Git 命令执行和历史查看
+    --   require("mini.git").setup();
+
+    --   -- mini.diff - Git diff 可视化和 hunk 操作
+    --   require("mini.diff").setup();
+    --   -- ==================== 选择器和交互工具 ====================
+    --   -- mini.pick - 通用选择器（文件、缓冲区、帮助等）
+    --   require("mini.pick").setup();
+    --   require("mini.extra").setup()
+
+      -- ==================== 平滑动画（带大文件保护） ====================
+      --[[
       local function is_large_buffer()
         local buf = vim.api.nvim_get_current_buf()
         local line_count = vim.api.nvim_buf_line_count(buf)
@@ -58,54 +98,7 @@ return {
         resize = { enable = true },
         scroll = { enable = true },
       })
-
-      local miniclue = require("mini.clue")
-      miniclue.setup({
-        triggers = {
-          { mode = "n", keys = "<Leader>" },
-          { mode = "x", keys = "<Leader>" },
-          { mode = "n", keys = "g" },
-          { mode = "x", keys = "g" },
-          { mode = "n", keys = "'" },
-          { mode = "n", keys = "`" },
-          { mode = "n", keys = "\"" },
-          { mode = "n", keys = "<C-w>" },
-          { mode = "i", keys = "<C-x>" },
-          { mode = "n", keys = "z" },
-        },
-        clues = {
-          miniclue.gen_clues.builtin_completion(),
-          miniclue.gen_clues.g(),
-          miniclue.gen_clues.marks(),
-          miniclue.gen_clues.registers(),
-          miniclue.gen_clues.windows(),
-          miniclue.gen_clues.z(),
-          -- Leader groups (mirror which-key groups)
-          { mode = "n", keys = "<Leader><Tab>", desc = "tabs" },
-          { mode = "n", keys = "<Leader>b", desc = "buffer" },
-          { mode = "n", keys = "<Leader>c", desc = "code/cmake" },
-          { mode = "n", keys = "<Leader>d", desc = "debug" },
-          { mode = "n", keys = "<Leader>f", desc = "file/find" },
-          { mode = "n", keys = "<Leader>g", desc = "git" },
-          { mode = "n", keys = "<Leader>gh", desc = "hunks" },
-          { mode = "n", keys = "<Leader>m", desc = "markdown" },
-          { mode = "n", keys = "<Leader>n", desc = "notifications" },
-          { mode = "n", keys = "<Leader>q", desc = "quit/session" },
-          { mode = "n", keys = "<Leader>r", desc = "rust/replace/rayso" },
-          { mode = "n", keys = "<Leader>s", desc = "search" },
-          { mode = "n", keys = "<Leader>t", desc = "test/terminal" },
-          { mode = "n", keys = "<Leader>u", desc = "ui" },
-          { mode = "n", keys = "<Leader>v", desc = "venv" },
-          { mode = "n", keys = "<Leader>w", desc = "windows" },
-          { mode = "n", keys = "<Leader>x", desc = "diagnostics/quickfix" },
-        },
-        window = {
-          delay = 200,
-          config = {
-            width = "auto",
-          },
-        },
-      })
+      ]]
     end,
   },
 }

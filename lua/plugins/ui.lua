@@ -88,8 +88,7 @@ return {
   },
   ]]
 
-  -- which-key - 快捷键提示（已用 mini.clue 替换）
-  --[[
+  -- which-key - 快捷键提示
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -117,7 +116,6 @@ return {
       },
     },
   },
-  ]]
 
   -- todo-comments - TODO 注释高亮
   {

@@ -1,30 +1,51 @@
 -- 终端和工具插件
 return {
-  -- toggleterm - 终端管理器
+  -- betterterm - 终端管理器（替换 toggleterm）
   {
-    "akinsho/toggleterm.nvim",
-    version = "*",
+    "CRAG666/betterTerm.nvim",
     keys = {
-      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
-      { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float Terminal" },
-      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Horizontal Terminal" },
-      { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "Vertical Terminal" },
+      { "<C-/>", function() require("betterTerm").open() end, mode = { "n", "t" }, desc = "Toggle terminal" },
+      -- { "<C-:>", function() require("betterTerm").open(1) end, mode = { "n", "t" }, desc = "Toggle terminal 1" },
+      { "<C-PageUp>", function() require("betterTerm").cycle(1) end, mode = { "n", "t" }, desc = "Cycle terminals right" },
+      { "<C-PageDown>", function() require("betterTerm").cycle(-1) end, mode = { "n", "t" }, desc = "Cycle terminals left" },
+      { "<leader>tt", function() require("betterTerm").select() end, desc = "Select terminal" },
+      { "<leader>tr", function() require("betterTerm").rename() end, desc = "Rename terminal" },
+      { "<leader>tb", function() require("betterTerm").toggle_tabs() end, desc = "Toggle terminal tabs" },
     },
     opts = {
-      size = function(term)
-        if term.direction == "horizontal" then
-          return 15
-        elseif term.direction == "vertical" then
-          return vim.o.columns * 0.4
-        end
-      end,
-      open_mapping = [[<c-\>]],
-      direction = "float",
-      float_opts = {
-        border = "curved",
-      },
+      position = "bot",
+      size = 20,
+      startInserted = true,
+      show_tabs = true,
+      prefix = "Term",
     },
   },
+
+  -- toggleterm - 终端管理器（已用 betterterm 替换）
+  -- {
+  --   "akinsho/toggleterm.nvim",
+  --   version = "*",
+  --   keys = {
+  --     { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+  --     { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float Terminal" },
+  --     { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Horizontal Terminal" },
+  --     { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", desc = "Vertical Terminal" },
+  --   },
+  --   opts = {
+  --     size = function(term)
+  --       if term.direction == "horizontal" then
+  --         return 15
+  --       elseif term.direction == "vertical" then
+  --         return vim.o.columns * 0.4
+  --       end
+  --     end,
+  --     open_mapping = [[<c-\>]],
+  --     direction = "float",
+  --     float_opts = {
+  --       border = "curved",
+  --     },
+  --   },
+  -- },
 
   -- telescope - 模糊查找器（LazyVim 默认包含，这里是增强配置）
   {

@@ -35,11 +35,23 @@ return {
     },
     keys = {
       { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+      -- 浏览插件文件
+      {
+        "<leader>fP",
+        function()
+          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+        end,
+        desc = "Find Plugin File",
+      },
     },
     config = function()
       local telescope = require("telescope")
       telescope.setup({
         defaults = {
+          layout_strategy = "horizontal",
+          layout_config = { prompt_position = "top" },
+          sorting_strategy = "ascending",
+          winblend = 0,
           mappings = {
             i = {
               ["<C-j>"] = "move_selection_next",

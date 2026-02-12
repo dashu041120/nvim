@@ -1,6 +1,7 @@
 -- UI 增强插件
 return {
-  -- indent-blankline - 彩虹色缩进参考线
+  -- indent-blankline - 彩虹色缩进参考线（已用 mini.indentscope 替换）
+  --[[
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
@@ -32,8 +33,10 @@ return {
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     end,
   },
+  ]]
 
-  -- cokeline - 缓冲区/标签栏
+  -- cokeline - 缓冲区/标签栏（已用 mini.tabline 替换）
+  --[[
   {
     "willothy/nvim-cokeline",
     dependencies = {
@@ -53,8 +56,10 @@ return {
       })
     end,
   },
+  ]]
 
-  -- neoscroll - 平滑滚动
+  -- neoscroll - 平滑滚动（已用 mini.animate 替换）
+  --[[
   {
     "karb94/neoscroll.nvim",
     config = function()
@@ -67,8 +72,10 @@ return {
       })
     end,
   },
+  ]]
 
-  -- smear-cursor - 光标拖尾效果
+  -- smear-cursor - 光标拖尾效果（已禁用，使用 mini.animate）
+  --[[
   {
     "sphamba/smear-cursor.nvim",
     opts = {
@@ -79,8 +86,10 @@ return {
       legacy_computing_symbols_support = false,
     },
   },
+  ]]
 
-  -- which-key - 快捷键提示
+  -- which-key - 快捷键提示（已用 mini.clue 替换）
+  --[[
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -108,6 +117,7 @@ return {
       },
     },
   },
+  ]]
 
   -- todo-comments - TODO 注释高亮
   {

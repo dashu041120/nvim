@@ -2,6 +2,7 @@
 return {
   {
     "tris203/precognition.nvim",
+    enabled = true,
     event = "VeryLazy",
     opts = {
       -- 启动时自动启用

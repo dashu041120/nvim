@@ -1,6 +1,7 @@
 -- 编辑器功能增强插件
 return {
-  -- nvim-autopairs - 自动括号配对
+  -- nvim-autopairs - 自动括号配对（已用 mini.pairs 替换）
+  --[[
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -15,8 +16,10 @@ return {
       })
     end,
   },
+  ]]
 
-  -- Comment.nvim - 快速注释
+  -- Comment.nvim - 快速注释（已用 mini.comment 替换）
+  --[[
   {
     "numToStr/Comment.nvim",
     keys = {
@@ -31,6 +34,7 @@ return {
       require("Comment").setup()
     end,
   },
+  ]]
 
   -- auto-indent - 自动缩进（禁用，使用自定义缩进配置）
   {

@@ -30,6 +30,16 @@ return {
       -- 补全源配置
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
+        per_filetype = {
+          org = { "orgmode", "snippets", "buffer", "path" },
+        },
+        providers = {
+          orgmode = {
+            name = "Orgmode",
+            module = "orgmode.org.autocompletion.blink",
+            fallbacks = { "buffer" },
+          },
+        },
       },
       -- 补全窗口配置
       completion = {

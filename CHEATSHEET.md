@@ -377,9 +377,126 @@ Examples 示例: `dw` 删除单词, `ci"` 改引号内, `yip` 复制段落。
 - `<C-n>` / `<C-p>` — next/prev completion (下/上)
 - `<CR>` — fallback (newline / 回车)
 
+### Orgmode (nvim-orgmode)
+- `<leader>oa` — Agenda prompt (打开日程)
+- `<leader>oc` — Capture prompt (快速记录)
+- `g?` — Help in org buffer (org 帮助)
+- `<leader>or` — Refile (移动到其它标题)
+- `<leader>oo` — Open link/date under cursor (打开链接/日期)
+- `<leader>o*` — Toggle heading on current line (标题/正文切换)
+- `<TAB>` / `<S-TAB>` — Toggle fold / toggle all (折叠/全局折叠)
+- `<C-space>` — Toggle checkbox (勾选框)
+- `<C-a>` / `<C-x>` — Increase/Decrease date under cursor (日期加/减)
+- `cid` — Open calendar popup (日历选择)
+- `cit` / `ciT` — TODO forward/backward (切换 TODO 状态)
+- `<leader>ot` — Change tags (编辑标签)
+- `<<` / `>>` — Promote/Demote heading (提升/降低层级)
+- `<s` / `>s` — Promote/Demote subtree (子树层级)
+- `<leader><CR>` — Add heading/list/checkbox (快速插入)
+- `<leader>oih` / `<leader>oiT` / `<leader>oit` — Insert heading/TODO (插入标题)
+- `<leader>oK` / `<leader>oJ` — Move heading up/down (移动标题)
+- `<leader>o$` / `<leader>oA` — Archive / add archive tag (归档)
+- `<leader>oe` — Run code block via SnipRun (执行代码块)
+- Agenda view: `a`/`t`/`m`/`s` (agenda/todo/tag/search), `f`/`b` (前后日期), `J` (跳转日期), `<CR>` / `<TAB>` (打开任务)
+
+### Orgmode Plugins
+- Org Super Agenda: `<leader>oS` (open), `<leader>oF` (fullscreen); inside: `of`/`oz`/`oq` (filter), `ot`/`op`/`ow`/`od` (TODO), `R` (refile), `K` (preview), `x`/`X` (hide/reset)
+- Telescope Orgmode: `<leader>oH` (search headings), `<leader>oR` (refile), `<leader>oL` (insert link), `<leader>oT` (search tags)
+- Telescope Orgmode commands: `:Telescope orgmode search_headings`, `:Telescope orgmode search_tags`, `:Telescope orgmode refile_heading`, `:Telescope orgmode insert_link`
+- Org Roam (default keymaps): `<leader>nc`/`<leader>nf` (capture/find), `<leader>ni`/`<leader>nm`/`<leader>n.` (insert/instant/complete)
+- Org Roam navigation: `<leader>nn`/`<leader>np` (next/prev), `<leader>nq` (backlinks), `<leader>nl`/`<leader>nb` (roam buffer)
+- Org Roam extras: `<leader>naa`/`<leader>nar` (alias), `<leader>noa`/`<leader>nor` (origin), `<leader>ndn`/`<leader>ndt`/`<leader>ndy`/`<leader>ndd` (dailies)
+- Org Bullets / Headlines / Org Modern: cosmetic enhancements (headline bullets, highlight bands, modern menus)
+
 ---
 
-## 11) Core Commands (Useful) 常用命令
+## 11) Orgmode Notes & Syntax 新手笔记与语法
+
+> 目标：让你能立刻写出可用的 org 笔记，并理解常见结构。
+
+### 目录建议（与当前配置一致）
+- `~/orgfiles/refile.org` — 收件箱（快速记录）
+- `~/orgfiles/notes.org` — 主题笔记
+- `~/orgfiles/journal.org` — 日志/日记
+
+### 基础结构（层级标题）
+```org
+* 项目 A
+** TODO [#A] 设计初稿            :work:design:
+*** WAIT 等待反馈
+** DONE 归档准备
+```
+
+### 时间与任务管理
+```org
+* TODO 写文档
+   DEADLINE: <2026-02-12 Thu>
+   SCHEDULED: <2026-02-10 Tue>
+   记录内容：已完成提纲。
+```
+
+#### 重复任务示例
+```org
+* TODO 每周复盘
+   SCHEDULED: <2026-02-14 Sat +1w>
+```
+
+### 属性与抽屉（metadata）
+```org
+* 任务带属性
+   :PROPERTIES:
+   :ID:       20260212-001
+   :OWNER:    dashu
+   :END:
+```
+
+### 列表与勾选框
+```org
+- [ ] 需求分析
+- [X] 原型完成
+- [ ] 评审
+
+1. 第一项
+2. 第二项
+```
+
+### 表格
+```org
+| 名称 | 状态 | 备注 |
+|------+------|------|
+| 任务 | TODO | 初稿 |
+| 复盘 | DONE | OK   |
+```
+
+### 链接与图片
+```org
+[[https://nvim-orgmode.github.io][orgmode 文档]]
+[[file:./images/diagram.png]]
+```
+
+### 代码块（语法高亮 + 执行）
+```org
+#+BEGIN_SRC python
+print("hello orgmode")
+#+END_SRC
+```
+- 执行：光标放在代码块内，按 `<leader>oe`（SnipRun）或命令 `:SnipRun`。
+- 如果需要执行选区：可视模式选择后执行 `:SnipRun`。
+
+### 公式（KaTeX 友好）
+- 行内：$E = mc^2$
+- 块级：
+$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+
+### 记录与捕获（Capture）
+- `<leader>oc` 打开模板列表，选择 `t/n/j` 快速记录到对应文件。
+- `<leader>oa` 查看日程（Agenda）并管理任务。
+
+---
+
+## 12) Core Commands (Useful) 常用命令
 
 ### Built-in 内置
 - `:Lazy` — plugin manager (插件管理)
@@ -395,7 +512,7 @@ Examples 示例: `dw` 删除单词, `ci"` 改引号内, `yip` 复制段落。
 
 ---
 
-## 12) Config Locations 配置位置
+## 13) Config Locations 配置位置
 
 | Area | File |
 |------|------|
@@ -413,10 +530,11 @@ Examples 示例: `dw` 删除单词, `ci"` 改引号内, `yip` 复制段落。
 | C/C++ | `lua/plugins/cpp.lua` |
 | Testing | `lua/plugins/testing.lua` |
 | Copilot | `lua/plugins/copilot.lua` |
+| Orgmode | `lua/plugins/orgmode.lua` |
 
 ---
 
-## 13) Tips & Pro Workflows 专业技巧
+## 14) Tips & Pro Workflows 专业技巧
 
 - Use `.` to repeat edits (重复上次修改，效率神器).
 - Combine text objects with operators: `ci"`, `da(`, `yip` (文本对象 + 操作符).
@@ -426,7 +544,7 @@ Examples 示例: `dw` 删除单词, `ci"` 改引号内, `yip` 复制段落。
 
 ---
 
-## 14) Troubleshooting 排错速查
+## 15) Troubleshooting 排错速查
 
 - LSP not working: `:LspInfo`, check Mason, then `:LspRestart` (LSP 排错).
 - Formatting unexpected: `:ConformInfo`, check `vim.g.autoformat` (格式化排错).
@@ -448,5 +566,5 @@ Examples 示例: `dw` 删除单词, `ci"` 改引号内, `yip` 复制段落。
 
 ---
 
-**最后更新**: 2024-11-13  
+**最后更新**: 2026-02-12  
 **版本**: 1.0
